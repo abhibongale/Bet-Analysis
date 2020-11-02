@@ -1,5 +1,5 @@
-# Bet-Analysis
+# Fantasy Team Optimizer
 
 ## About
-Bet-Analysis is about predicting the likelihood of wins and goals scored by the players
+Fantasy Team Optimizer is about predicting the likelihood of wins and goals scored by the players
 ## Result
