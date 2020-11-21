@@ -7,73 +7,11 @@ attackers <- read_csv('./data/attackers.csv')
 midfielders <- read_csv('./data/midfielders.csv')
 defenders <- read_csv("./data/defenders.csv")
 
-# visualization
+# visualization-----------------------------------------------------------------  a
 attackers %>%
   select(-id, -in_dreamteam, -second_name, -web_name, -status, -team_code, -saves, -penalties_saved) %>%
   cor() %>%
   view()
-
-
-# new dataset average dataset
-avg_attack <- aggregate(attackers$influence, list(attackers$team), mean) %>%
-  select(x) %>%
-  rename("influence" = x)
-
-avg_attack <- avg_attack %>%
-  add_column(aggregate(attackers$creativity, list(attackers$team), mean) %>%
-                select(x) %>%
-                rename("creativity" = x)) %>%
-  add_column(aggregate(attackers$threat, list(attackers$team), mean) %>%
-               select(x) %>%
-               rename("threat" = x)) %>%
-  add_column(aggregate(attackers$points_per_game, list(attackers$team), mean) %>%
-               select(x) %>%
-               rename("points_per_game" = x)) %>%
-  add_column(aggregate(attackers$total_points, list(attackers$team), mean) %>%
-               select(x) %>%
-               rename("total_points" = x)) %>%
-  add_column(aggregate(attackers$goals_scored, list(attackers$team), mean) %>%
-               select(x) %>%
-               rename("goals_scored" = x)) %>%
-  add_column(aggregate(attackers$assists, list(attackers$team), mean) %>%
-               select(x) %>%
-               rename("assists" = x)) %>%
-  add_column(aggregate(attackers$bonus, list(attackers$team), mean) %>%
-               select(x) %>%
-               rename("bonus" = x)) %>%
-  add_column(aggregate(attackers$bps, list(attackers$team), mean) %>%
-               select(x) %>%
-               rename("bps" = x)) %>%
-  add_column(aggregate(attackers$form, list(attackers$team), mean) %>%
-               select(x) %>%
-               rename("form" = x)) %>%
-  add_column(aggregate(attackers$value_form, list(attackers$team), mean) %>%
-               select(x) %>%
-               rename("value" = x)) %>%
-  add_column(aggregate(attackers$minutes, list(attackers$team), mean) %>%
-               select(x) %>%
-               rename("minutes" = x)) %>%
-  add_column(aggregate(attackers$selected_by_percent, list(attackers$team), mean) %>%
-               select(x) %>%
-               rename("selected_by_percent" = x)) %>%
-  add_column(aggregate(attackers$transfers_in, list(attackers$team), mean) %>%
-               select(x) %>%
-               rename("transfers_in" = x)) %>%
-  add_column(aggregate(attackers$transfers_out, list(attackers$team), mean) %>%
-               select(x) %>%
-               rename("transfers_out" = x)) %>%
-  add_column(aggregate(attackers$yellow_cards, list(attackers$team), mean) %>%
-               select(x) %>%
-               rename("yellow_cards" = x)) %>%
-  add_column(aggregate(attackers$red_cards, list(attackers$team), mean) %>%
-             select(x) %>%
-             rename("red_cards" = x))%>%
-  add_column(aggregate(attackers$transfers_in_event, list(attackers$team), mean) %>%
-               select(x) %>%
-               rename("transfer_in_event" = x)) %>%
-  add_column(aggregate(attackers$transfers_out_event, list(attackers$team), mean) %>%
-               select(x) %>%
-               rename("transfer_out_event" = x))
 
 avg_attack <- avg_position_set(attackers)
 avg_midfielders <- avg_position_set(midfielders)
